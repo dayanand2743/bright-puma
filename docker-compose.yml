@@ -1,0 +1,12 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      bash -c "apt-get update && apt-get install -y docker.io &&
+               /usr/bin/java -jar /usr/share/jenkins/jenkins.war"
